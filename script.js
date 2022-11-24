@@ -1,6 +1,3 @@
-var currentTime = dayjs();
-
-
 //date and time inject to document head with dayjs, i added the time instead of just the date on an extra line in the document
 var today = dayjs();
 $("#currentDay").text(today.format("dddd, MMMM D"));
@@ -10,19 +7,26 @@ var timeUpdater = setInterval(function () {
   $("#currentTime").text(today.format("h:mm:ss a"));
 });
 
-//setting colours of time to load before rest
+//setting colours of time to load before rest... but the thing isnt working..... commenting out til debugged
 
-function timeColour() {
-  $(".time-block").each(function() {
-    if (blockTime < currentTime) {
-      $(this).addClass(".past");
-    } else if (blockTime = currentTime) {
-      $(this).addClass(".present");
-    } else {
-      $(this).addClass(".future");
-    }
-  });
-}
+
+
+// function timeColour() {
+//   $(".time-block").each(function() {
+//     var blockTime = parseInt($(this).attr("id").replace("hour", ""));
+//     var currentTime = parseInt(dayjs().format("hr"));
+//     if (blockTime < currentTime) {
+//       $(this).addClass(".past");
+//     } else if (blockTime = currentTime) {
+//       $(this).addClass(".present");
+//     } else {
+//       $(this).addClass(".future");
+//     }
+//   });
+// }
+
+
+
 //functions to save and load data into the correct blocks
 $(saveData);
 
