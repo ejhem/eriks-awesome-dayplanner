@@ -13,14 +13,14 @@ var timeUpdater = setInterval(function () {
 
 function timeColour() {
   $(".time-block").each(function() {
-    var blockTime = parseInt($(this).attr("id").replace("hour", ""));
+    var blockTime = parseInt($(this).attr("id").replace("hour-", " "));
     var currentTime = parseInt(dayjs().format("H"));
     if (blockTime < currentTime) {
-      $(this).addClass(".past");
+      $(".description").addClass(".past");
     } else if (blockTime = currentTime) {
-      $(this).addClass(".present");
+      $(".description").addClass(".present");
     } else {
-      $(this).addClass(".future");
+      $(".description").addClass(".future");
     }
   });
 }
@@ -49,5 +49,5 @@ function saveTask(e) {
   event.preventDefault();
   var hourId = $(this).parent().attr("id");
   //this is saving the array information to local storage
-  localStorage.setItem(dayjs().format("dd") + hourId, $("#" + hourId + " textarea").val());
+  localStorage.setItem(dayjs().format("DD") + hourId, $("#" + hourId + " textarea").val());
 }
