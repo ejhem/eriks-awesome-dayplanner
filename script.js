@@ -11,19 +11,21 @@ var timeUpdater = setInterval(function () {
 
 
 
-// function timeColour() {
-//   $(".time-block").each(function() {
-//     var blockTime = parseInt($(this).attr("id").replace("hour", ""));
-//     var currentTime = parseInt(dayjs().format("hr"));
-//     if (blockTime < currentTime) {
-//       $(this).addClass(".past");
-//     } else if (blockTime = currentTime) {
-//       $(this).addClass(".present");
-//     } else {
-//       $(this).addClass(".future");
-//     }
-//   });
-// }
+function timeColour() {
+  $(".time-block").each(function() {
+    var blockTime = parseInt($(this).attr("id").replace("hour", ""));
+    var currentTime = parseInt(dayjs().format("H"));
+    if (blockTime < currentTime) {
+      $(this).addClass(".past");
+    } else if (blockTime = currentTime) {
+      $(this).addClass(".present");
+    } else {
+      $(this).addClass(".future");
+    }
+  });
+}
+
+timeColour();
 
 
 
@@ -35,7 +37,7 @@ function saveData() {
     //below line is calling the id in (this) timeBlock being the number of hour
     var timeBlock = $(this).attr("id");
     //below line is calling to input the info into hour text area from local storage, # being the hour, then dayjs is adding what hour it was input to help js determine what is to be put
-    $("#" + timeBlock + " textarea").text(localStorage.getItem(dayjs().format("h mm ") + timeBlock));
+    $("#" + timeBlock + " textarea").text(localStorage.getItem(dayjs().format("dd") + timeBlock));
   });
 // below is calling the next function
   $(".saveBtn").on("click", saveTask);
@@ -47,5 +49,5 @@ function saveTask(e) {
   event.preventDefault();
   var hourId = $(this).parent().attr("id");
   //this is saving the array information to local storage
-  localStorage.setItem(dayjs().format("h mm ") + hourId, $("#" + hourId + " textarea").val());
+  localStorage.setItem(dayjs().format("dd") + hourId, $("#" + hourId + " textarea").val());
 }
